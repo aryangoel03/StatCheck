@@ -1,11 +1,12 @@
-const BASE_URL = "localhost:3000/api"
-const USER_URL = `${BASE_URL}/users`
+const BASE_URL = "http://localhost:3000/api";  // Ensure the URL is correct
+const USER_URL = `${BASE_URL}/users`;
 
-export const registerUser = async (userInfo) => {
+export const register = async (userInfo) => {
     const response = await fetch(`${USER_URL}/register`, {
         method: "POST",
         headers: {
-            'Content-type': `application/json`
+            Accept: 'application/json',
+            'Content-type': 'application/json'
         },
         body: JSON.stringify(userInfo)
     });
@@ -15,12 +16,13 @@ export const registerUser = async (userInfo) => {
         throw new Error(errorData.error || "Registration failed");
     }
     return await response.json();
-}
+};
 
 export const login = async (loginDetails) => {
     const response = await fetch(`${USER_URL}/login`, {
         method: "POST",
         headers: {
+            Accept: 'application/json',
             'Content-type': 'application/json'
         },
         body: JSON.stringify(loginDetails)
@@ -31,4 +33,4 @@ export const login = async (loginDetails) => {
         throw new Error(errorData.error || "Login failed");
     }
     return await response.json();
-}
+};

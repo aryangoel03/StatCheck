@@ -20,14 +20,14 @@ async function registerUser(username, email, password) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ username, email, hashedPassword });
+    const user = new User({ username, email, password: hashedPassword });
     await user.save()
 
     return user;
 }
 
 async function authenticateUser(username, password) {
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username }).select('+password');
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
         throw new Error(`Incorrect username or password`);
