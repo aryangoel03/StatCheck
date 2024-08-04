@@ -1,5 +1,103 @@
 # Ignore node_modules
 **/node_modules/
 
-# Ignore .env
+# Backend/ .gitignore
 backend/.env
+
+# Frontend/web/.gitignore ---------------
+
+# dependencies
+frontend/web/.pnp
+frontend/web.pnp.js
+
+# testing
+frontend/web/coverage
+
+# production
+frontend/web/build
+
+# misc
+frontend/web/.DS_Store
+frontend/web/.env.local
+frontend/web/.env.development.local
+frontend/web/.env.test.local
+frontend/web/.env.production.local
+
+frontend/web/npm-debug.log*
+frontend/web/yarn-debug.log*
+frontend/web/yarn-error.log*
+
+# Frontend/mobile/.gitignore -----------
+# OSX
+#
+frontend/mobile/.DS_Store
+
+# Xcode
+#
+frontend/mobile/build/
+frontend/mobile/*.pbxuser
+frontend/mobile/!default.pbxuser
+frontend/mobile/*.mode1v3
+frontend/mobile/!default.mode1v3
+frontend/mobile/*.mode2v3
+frontend/mobile/!default.mode2v3
+frontend/mobile/*.perspectivev3
+frontend/mobile/!default.perspectivev3
+frontend/mobile/xcuserdata
+frontend/mobile/*.xccheckout
+frontend/mobile/*.moved-aside
+frontend/mobile/DerivedData
+frontend/mobile/*.hmap
+frontend/mobile/*.ipa
+frontend/mobile/*.xcuserstate
+frontend/mobile/**/.xcode.env.local
+
+# Android/IntelliJ
+#
+frontend/mobile/build/
+frontend/mobile/.idea
+frontend/mobile/.gradle
+frontend/mobile/local.properties
+frontend/mobile/*.iml
+frontend/mobile/*.hprof
+frontend/mobile/.cxx/
+frontend/mobile/*.keystore
+frontend/mobile/!debug.keystore
+
+# node.js
+#
+frontend/mobile/npm-debug.log
+frontend/mobile/yarn-error.log
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+frontend/mobile/**/fastlane/report.xml
+frontend/mobile/**/fastlane/Preview.html
+frontend/mobile/**/fastlane/screenshots
+frontend/mobile/**/fastlane/test_output
+
+# Bundle artifact
+frontend/mobile/*.jsbundle
+
+# Ruby / CocoaPods
+frontend/mobile/**/Pods/
+frontend/mobile//vendor/bundle/
+
+# Temporary files created by Metro to check the health of the file watcher
+frontend/mobile/.metro-health-check*
+
+# testing
+frontend/mobile//coverage
+
+# Yarn
+frontend/mobile/.yarn/*
+frontend/mobile/!.yarn/patches
+frontend/mobile/!.yarn/plugins
+frontend/mobile/!.yarn/releases
+frontend/mobile/!.yarn/sdks
+frontend/mobile/!.yarn/versions

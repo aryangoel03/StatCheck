@@ -1,0 +1,22 @@
+current directory: /Users/aryangoel/Documents/Projects/gamify-app/frontend/mobile/vendor/bundle/ruby/3.2.0/gems/strscan-3.1.0/ext/strscan
+/opt/homebrew/opt/ruby/bin/ruby extconf.rb
+checking for onig_region_memsize() in ruby.h... yes
+checking for rb_reg_onig_match() in ruby.h... no
+creating Makefile
+
+current directory: /Users/aryangoel/Documents/Projects/gamify-app/frontend/mobile/vendor/bundle/ruby/3.2.0/gems/strscan-3.1.0/ext/strscan
+make DESTDIR\= sitearchdir\=./.gem.20240804-38168-57tm18 sitelibdir\=./.gem.20240804-38168-57tm18 clean
+
+current directory: /Users/aryangoel/Documents/Projects/gamify-app/frontend/mobile/vendor/bundle/ruby/3.2.0/gems/strscan-3.1.0/ext/strscan
+make DESTDIR\= sitearchdir\=./.gem.20240804-38168-57tm18 sitelibdir\=./.gem.20240804-38168-57tm18
+compiling strscan.c
+linking shared-object strscan.bundle
+ld: warning: -multiply_defined is obsolete
+ld: warning: ignoring duplicate libraries: '-lruby.3.2'
+
+current directory: /Users/aryangoel/Documents/Projects/gamify-app/frontend/mobile/vendor/bundle/ruby/3.2.0/gems/strscan-3.1.0/ext/strscan
+make DESTDIR\= sitearchdir\=./.gem.20240804-38168-57tm18 sitelibdir\=./.gem.20240804-38168-57tm18 install
+/usr/bin/install -c -m 0755 strscan.bundle ./.gem.20240804-38168-57tm18
+
+current directory: /Users/aryangoel/Documents/Projects/gamify-app/frontend/mobile/vendor/bundle/ruby/3.2.0/gems/strscan-3.1.0/ext/strscan
+make DESTDIR\= sitearchdir\=./.gem.20240804-38168-57tm18 sitelibdir\=./.gem.20240804-38168-57tm18 clean
