@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000/api";  // Ensure the URL is correct
+const BASE_URL = "http://192.168.1.187:3000/api";  // Ensure the URL is correct
 const USER_URL = `${BASE_URL}/users`;
 
 export const register = async (userInfo) => {
