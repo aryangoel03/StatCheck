@@ -1,4 +1,5 @@
-const BASE_URL = "http://192.168.1.187:3000/api";  // Ensure the URL is correct
+const BASE_URL = "http://192.168.1.187:3000/api";  // Home URL
+//const BASE_URL = "http://10.89.240.74:3000/api";    // UQ URL
 const USER_URL = `${BASE_URL}/users`;
 
 export const register = async (userInfo) => {

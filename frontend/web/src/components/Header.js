@@ -6,13 +6,15 @@ function Header() {
     <header className="page-header">
       <div className="header-logo">
         <h2>
-          <Link to={"/"} className="header-icon-link">
-            Questify
+          <Link style={{textDecoration:"none"}}to={"/"} className="header-icon-link">
+            StatChek
           </Link>
         </h2>
       </div>
-      <div className="header-app-description">
-        <span>Gamify your life!</span>
+      <div style={{display: "flex", alignItems:"center"}}>
+        <Link style={{textDecoration:"none"}}to={'/login'}>Login</Link>
+      <p>|</p>
+        <Link style={{textDecoration:"none"}}to={'/register'}>Sign up</Link>
       </div>
     </header>
   );

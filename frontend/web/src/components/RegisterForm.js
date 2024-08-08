@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const RegisterForm = ({ handleSubmit }) => {
     const [formData, setFormData] = useState({
@@ -28,7 +29,8 @@ const RegisterForm = ({ handleSubmit }) => {
     };
 
     return (
-        <form onSubmit={onSubmit}>
+        <div className='login-container'>
+        <form className='login-form' onSubmit={onSubmit}>
             <div>
                 <label htmlFor="username">Username:</label>
                 <input
@@ -62,9 +64,13 @@ const RegisterForm = ({ handleSubmit }) => {
                     required
                 />
             </div>
-            {error && <div style={{ color: 'red' }}>{error}</div>}
+            {error && <p className='error-msg'>{error}</p>}
             <button type="submit">Register</button>
+            <p className='sign-link'>Already have an account? <Link to={'/login'}>
+                Login
+            </Link></p>
         </form>
+        </div>
     );
 };
 

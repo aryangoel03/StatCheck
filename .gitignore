@@ -1,6 +1,9 @@
 # Ignore node_modules
 **/node_modules/
 
+# misc
+.DS_Store
+
 # Backend/ .gitignore
 backend/.env
 
@@ -26,6 +29,8 @@ frontend/web/.env.production.local
 frontend/web/npm-debug.log*
 frontend/web/yarn-debug.log*
 frontend/web/yarn-error.log*
+
+frontend/web/src/.DS_Store
 
 # Frontend/mobile/.gitignore -----------
 # OSX
