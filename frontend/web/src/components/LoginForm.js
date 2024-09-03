@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const LoginForm = ({ handleLogin }) => {
     const [formData, setFormData] = useState({
-        username: '',
+        email: '',
         password: ''
     });
 
@@ -30,12 +30,12 @@ const LoginForm = ({ handleLogin }) => {
         <div className="login-container">
             <form onSubmit={onSubmit} className="login-form">
                 <div>
-                    <label htmlFor="username">USERNAME</label>
+                    <label htmlFor="email">EMAIL</label>
                     <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        value={formData.username}
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
                         onChange={handleChange}
                         required
                     />

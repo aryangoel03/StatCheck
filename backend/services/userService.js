@@ -1,4 +1,6 @@
 const User = require('../models/userModel');
+const Habit = require('../models/habitModel');
+const DateModel = require('../models/dateModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const config = require('../config');
@@ -9,9 +11,9 @@ function validatePassword(password) {
 }
 
 async function registerUser(username, email, password) {
-    const existingUser = await User.findOne({ username});
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
-        throw new Error(`Username already exists`);
+        throw new Error(`Email already in use`);
     }
 
     if (!validatePassword(password)) {
@@ -20,17 +22,32 @@ async function registerUser(username, email, password) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ username, email, password: hashedPassword });
-    await user.save()
+    const user = new User({
+        username: username,
+        email: email,
+        password: hashedPassword,
+        dates: [
+            {
+                date: new Date(new Date().setHours(0,0,0,0)),
+                habits: [new Habit({
+                    title: 'test habit',
+                    description: 'this is a habit i have here just for testing',
+                    type: 'Charisma',
+                    completed: false
+                })]
+            }
+        ]
+    });
 
+    await user.save()
     return user;
 }
 
-async function authenticateUser(username, password) {
-    const user = await User.findOne({ username }).select('+password');
+async function authenticateUser(email, password) {
+    const user = await User.findOne({ email }).select('+password');
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
-        throw new Error(`Incorrect username or password`);
+        throw new Error(`Incorrect email or password`);
     }
 
     const token = jwt.sign({ userId: user._id }, config.JWT_SECRET, { expiresIn: `7d` });
