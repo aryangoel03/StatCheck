@@ -1,9 +1,12 @@
 const User = require('../models/userModel');
 const Habit = require('../models/habitModel');
 const DateModel = require('../models/dateModel');
+const HabitService = require('./habitService');
 
 async function addDate(userId) {
     try {
+        const habits = HabitService.getHabits(userId);
+
         const updatedUser = await User.findByIdAndUpdate(
             userId,
             { $push:
@@ -11,7 +14,7 @@ async function addDate(userId) {
                 dates:
                     {
                         date: new Date().setHours(0,0,0,0),
-                        tasks: []
+                        habits: habits
                     }
                 }
             },
@@ -19,7 +22,7 @@ async function addDate(userId) {
         );
         console.log("User updated", updatedUser);
     } catch (err) {
-        console.err("Error in updating user", err);
+        console.error("Error in updating user", err);
     }
     return updatedUser;
 };
@@ -48,8 +51,5 @@ async function getDate(userId, date) {
         throw new Error(error.message || 'Server error.');
     }
 }
-
-module.exports = { addDate, getDate };
-
 
 module.exports = { addDate, getDate };

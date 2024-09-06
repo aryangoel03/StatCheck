@@ -50,8 +50,9 @@ async function authenticateUser(email, password) {
         throw new Error(`Incorrect email or password`);
     }
 
-    const token = jwt.sign({ userId: user._id }, config.JWT_SECRET, { expiresIn: `7d` });
-    return token;
+    const token = jwt.sign({ userId: user._id }, config.JWT_SECRET, { expiresIn: `15m` });
+    const username = user.username;
+    return { token, username };
 }
 
 module.exports = { registerUser, authenticateUser };

@@ -2,6 +2,7 @@
 const BASE_URL = "http://localhost:3000/api";    // Localhost URL
 const USER_URL = `${BASE_URL}/users`;
 const DATE_URL = `${BASE_URL}/dates`;
+const HABIT_URL = `${BASE_URL}/habits`;
 
 
 export const register = async (userInfo) => {
@@ -33,15 +34,16 @@ export const login = async (loginDetails) => {
         const errorData = await response.json();
         throw new Error(errorData.error || "Login failed");
     }
-    const token = await response.json();
+    const { token, username } = await response.json();
 
     if (token) {
         localStorage.setItem('token', token);
+        localStorage.setItem('username', username);
     } else {
         throw new Error("Token not received");
     }
 
-    return token;
+    return { token, username };
 };
 
 export const addDate = async () => {
@@ -74,6 +76,23 @@ export const getDate = async (date) => {
     if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Could not retrieve date");
+    }
+    return await response.json();
+}
+
+export const addHabit = async (habitInfo) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${HABIT_URL}/addHabit`, {
+        method: "POST",
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify(habitInfo)
+    });
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Adding habit failed");
     }
     return await response.json();
 }

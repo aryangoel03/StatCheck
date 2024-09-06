@@ -1,7 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { isTokenExpired } from "../api/decode";
 
 function Header() {
+  const location = useLocation();
+  const token = localStorage.getItem('token');
+  const username = localStorage.getItem('username');
   return (
     <header className="page-header">
       <div className="header-logo">
@@ -11,11 +15,19 @@ function Header() {
           </Link>
         </h2>
       </div>
-      <div style={{display: "flex", alignItems:"center"}}>
+      {location.pathname === '/' ? (token && !isTokenExpired(token)) ? (
+        <div style={{display: "flex", alignItems:"center"}}>
+          <p className="header-icon-link">{username}</p>
+        </div>
+      ) : (<div style={{display: "flex", alignItems:"center"}}>
         <Link style={{textDecoration:"none"}}to={'/login'}>Login</Link>
       <p>|</p>
         <Link style={{textDecoration:"none"}}to={'/register'}>Sign up</Link>
-      </div>
+      </div>) : (
+        <p>extra</p>
+      )}
+
+      
     </header>
   );
 }

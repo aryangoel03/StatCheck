@@ -2,31 +2,44 @@ import React, { useState } from 'react';
 
 const HabitForm = ({ handleSubmit }) => {
   // State for the form fields
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [type, setType] = useState('Health');
+  const [formData, setFormData] = useState({
+    title: "New Habit",
+    description: "",
+    type: "Health"
+  });
 
-//   // Handle form submission
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     const formData = {
-//       title,
-//       description,
-//       type,
-//     };
-//     console.log('Form Data:', formData);
-//     // Here you can handle the form data, like sending it to a server
-//   };
+  const [error, setError] = useState(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+        ...formData,
+        [name]: value
+    });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    try {
+        await handleSubmit(formData);
+    } catch (error) {
+        console.error("Form submission error:", error);
+        setError(error.message);
+    }
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={onSubmit}>
       <div>
         <label>
           Title:
           <input
             type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            id="title"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
             required
           />
         </label>
@@ -37,9 +50,10 @@ const HabitForm = ({ handleSubmit }) => {
           Description:
           <input
             type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
           />
         </label>
       </div>
@@ -47,7 +61,7 @@ const HabitForm = ({ handleSubmit }) => {
       <div>
         <label>
           Type:
-          <select value={type} onChange={(e) => setType(e.target.value)}>
+          <select name="type" value={formData.type} onChange={handleChange}>
             <option value="Health">Health</option>
             <option value="Intelligence">Intelligence</option>
             <option value="Wisdom">Wisdom</option>
