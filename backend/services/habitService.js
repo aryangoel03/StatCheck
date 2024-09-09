@@ -8,7 +8,8 @@ async function addHabitToDate(habitItem) {
         const newHabit = new Habit({
             title: habitItem.title,
             description: habitItem.description,
-            type: habitItem.type
+            type: habitItem.type,
+            habitId: habitItem._id
         });
 
         const targetDate = new Date(new Date().setHours(0, 0, 0, 0));
@@ -16,7 +17,7 @@ async function addHabitToDate(habitItem) {
         const user = await User.findOneAndUpdate(
             {
                 _id: habitItem.userId,
-                "dates.date": new Date(targetDate).setHours(0, 0, 0, 0), // Find the user and the specific date
+                "dates.date": targetDate, // Find the user and the specific date
             },
             {
                 $push: {
@@ -57,4 +58,53 @@ async function getHabits(userId) {
     }
 }
 
-module.exports = { addHabit, addHabitToDate, getHabits };
+async function completeHabit(habitId, completed) {
+    try {
+        const user = await User.updateOne(
+            { "dates.habits._id": habitId },
+            {
+                $set: {
+                    "dates.$[outer].habits.$[inner].completed": !completed
+                }
+            },
+            {
+                arrayFilters: [
+                    { "outer.habits._id": habitId }, // Filter for the outer array
+                    { "inner._id": habitId }                    // Filter for the inner array
+                ]
+            }
+        );
+        console.log("Habit completion status changed");
+        return user;
+    } catch(err) {
+        console.error("Failed to change completion status", err);
+    }
+}
+
+async function deleteHabit(userId, habitId) {
+    try {
+        const habitItem = await HabitItem.findOneAndUpdate(
+            { "_id": habitId },
+            {
+                $set: { "isActive": false }
+            }
+        );
+        const targetDate = new Date(new Date().setHours(0, 0, 0, 0));
+        const user = await User.findOneAndUpdate(
+            {
+                _id: userId,
+                "dates.date": targetDate
+            },
+            {
+                $pull: { "dates.$.habits": { habitId: habitId } }
+            },
+            { new: true }
+        );
+        console.log("Removed habit and updated user:", user);
+        return habitItem;
+    } catch(error) {
+        console.error('Error removing habit:', error);
+    }
+}
+
+module.exports = { addHabit, addHabitToDate, getHabits, completeHabit, deleteHabit };

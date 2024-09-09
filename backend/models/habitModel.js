@@ -4,6 +4,7 @@ const habitSchema = new mongoose.Schema({
     title: { type: String, required: true},
     description: { type: String },
     type: { type: String, enum: ['Health', 'Intelligence', 'Wisdom', 'Strength', 'Charisma'], required: true },
+    habitId: { type: mongoose.Schema.Types.ObjectId },
     completed: {type: Boolean, default: false }
 });
 

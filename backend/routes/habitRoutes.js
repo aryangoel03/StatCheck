@@ -5,4 +5,8 @@ const authJWT = require(`../controllers/authJWT`);
 
 router.post(`/addHabit`, authJWT.authJWT, habitController.addHabit);
 
+router.post(`/completeHabit`, authJWT.authJWT, habitController.completeHabit);
+
+router.post(`/deleteHabit`, authJWT.authJWT, habitController.deleteHabit);
+
 module.exports = router;

@@ -96,3 +96,37 @@ export const addHabit = async (habitInfo) => {
     }
     return await response.json();
 }
+
+export const completeHabit = async (habitId, completed) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${HABIT_URL}/completeHabit`, {
+        method: "POST",
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify({ habitId, completed })
+    });
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Completing habit failed");
+    }
+    return await response.json(); 
+}
+
+export const deleteHabit = async (habitId) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${HABIT_URL}/deleteHabit`, {
+        method: "POST",
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-type': 'application/json'
+        },
+        body: JSON.stringify({ habitId })
+    });
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Deleting habit failed");
+    }
+    return await response.json();
+}

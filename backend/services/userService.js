@@ -11,6 +11,7 @@ function validatePassword(password) {
 }
 
 async function registerUser(username, email, password) {
+    email = email.toLowerCase();
     const existingUser = await User.findOne({ email });
     if (existingUser) {
         throw new Error(`Email already in use`);
@@ -44,6 +45,7 @@ async function registerUser(username, email, password) {
 }
 
 async function authenticateUser(email, password) {
+    email = email.toLowerCase();
     const user = await User.findOne({ email }).select('+password');
 
     if (!user || !(await bcrypt.compare(password, user.password))) {

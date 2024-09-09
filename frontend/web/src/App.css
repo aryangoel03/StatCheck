@@ -5,18 +5,24 @@ html, body {
   padding: 0;
   height: 100%;
   font-family: 'Montserrat', sans-serif;
-  background: #1e1e2f; /* Dark background color */
-  color: #fff; /* White text color */
+  background: #FAF0E6; /* Dark background color */
+  color: #800000; /* White text color */
+}
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .page-header {
-  background-image: linear-gradient(#1e1e2f, #1e1e2f);
+  background-image: linear-gradient(#800000, #800000);
   width: 100%;
   position: sticky;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #bbb;
+  color: #fffff0;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
@@ -45,7 +51,7 @@ html, body {
 }
 
 .reg-link {
-  color: #bbb;
+  color: #34495e;
   text-decoration: none;
 }
 
@@ -54,14 +60,15 @@ html, body {
   justify-content: center;
   align-items: center;
   height: 90vh; /* Ensure it covers the full height */
-  background-image: url('images/anime-city-scape.jpg'); /* Replace with your image path */
+  /*background-image: url('images/anime-city-scape.jpg'); /* Replace with your image path */
+  background-color: #500000;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .login-form {
-  background: rgba(30, 30, 47, 0.9); /* Dark semi-transparent background for the form */
+  background: rgba(148, 0, 0, 0.9); /* Dark semi-transparent background for the form */
   padding: 40px 30px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
@@ -79,7 +86,7 @@ html, body {
   font-size: 13px;
   display: block;
   margin-bottom: 5px;
-  color: #bbb; /* Light grey color for labels */
+  color: #fffff0; /* Light grey color for labels */
   text-align: left;
 }
 
@@ -89,22 +96,22 @@ html, body {
   border: 1px solid #444;
   border-radius: 4px;
   font-size: 16px;
-  background: #2a2a3a; /* Dark background for input fields */
-  color: #fff; /* White text color */
+  background: #faf0e6; /* Dark background for input fields */
+  color: #800000; /* White text color */
   box-sizing: border-box; /* Ensure padding does not overflow the input */
 }
 
 .login-form input::placeholder {
-  color: #888; /* Placeholder color */
+  color: #800000; /* Placeholder color */
 }
 
 .login-form button {
   width: 100%; /* Full width for the button */
   padding: 15px; /* Equal padding for uniformity */
-  background-color: #e94560; /* Bold red color for the button */
+  background-color: #ffae00; /* Bold red color for the button */
   border: none;
   border-radius: 10px; /* Rounded corners */
-  color: white;
+  color: #800000;
   font-size: 16px;
   cursor: pointer;
   display: block;
@@ -113,7 +120,7 @@ html, body {
 }
 
 .login-form button:hover {
-  background-color: #c33b51; /* Darker red on hover */
+  background-color: #ffe60097; /* Darker red on hover */
 }
 
 .error-msg {
@@ -125,7 +132,7 @@ html, body {
 }
 
 .login-form a, .sign-link {
-  color: #bbb;
+  color: #ffd700;
   font-size: 14px;
   text-decoration: none;
   width: 100%;
@@ -146,4 +153,71 @@ html, body {
     margin-left: 5%;
     margin-right: 5%;
   }
+}
+
+
+/* Styling for habit card */
+
+.habit-card {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin: 12px 0;
+  max-width: 600px; /* Wider card */
+  display: flex;
+  flex-direction: column;
+}
+
+.habit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.habit-title {
+  color: #000;
+  font-size: 18px;
+  margin: 0;
+}
+
+.delete-habit {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.3s;
+  font-weight: normal;
+}
+
+.delete-habit:hover {
+  color: #999;
+  transform: scale(1.1);
+}
+
+.habit-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.habit-description {
+  font-size: 14px;
+  margin: 0;
+  color: #666;
+  flex: 2;
+}
+
+.habit-type {
+  font-size: 13px;
+  color: #333;
+  margin: 0 64px 0 16px;
+  flex: 1;
+}
+
+.habit-checkbox {
+  margin-left: auto;
 }
